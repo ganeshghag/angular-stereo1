@@ -1,0 +1,12 @@
+<h1>Angular JS StereoType Application DemoCrud Page </h1>
+
+<div ng-controller="DemoCrudCtrlInsert">
+	<form novalidate class="simple-form">
+		<input type="submit" ng-click="update()" value="Insert New" />
+	</form>
+</div>
+
+<li  ng-repeat="row in awesomeThings._embedded.people">
+      {{row.firstName}},{{row.lastName}},{{row.email}},{{row.address}}
+	  ,{{row.mobile}},{{row.employeId}}
+</li>
