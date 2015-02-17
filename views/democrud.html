@@ -1,12 +1,35 @@
 <h1>Angular JS StereoType Application DemoCrud Page </h1>
 
 <div ng-controller="DemoCrudCtrlInsert">
-	<form novalidate class="simple-form">
-		<input type="submit" ng-click="update()" value="Insert New" />
-	</form>
+	<form name="personForm" novalidate>
+		First Name:<input id="firstName" type="text" name="firstName" ng-model="person.firstName" ng-init="person.firstName='Ganesh'" required />
+		<br />
+	    Last Name:<input id="lastName" type="text" name="lastName" ng-model="person.lastName" ng-init="person.lastName='Ghag'" required />
+		<br/>
+		Email:<input id="email" type="text" name="email" ng-model="person.email" ng-init="person.email='gan@email.com'" required />
+		<br/>
+		Address<input id="address" type="text" name="address" ng-model="person.address" ng-init="person.address='Opp. Viviana Mall'" required />
+		<br/>
+		Mobile<input id="mobile" type="text" name="mobile" ng-model="person.mobile" ng-init="person.mobile='2342343434'" required />
+		<br/>
+		Employee Id<input id="employeeId" type="text" name="employeeId" ng-model="person.employeeId" ng-init="person.employeeId='auto'" required />
+		<br/>
+
+      <button type="submit"
+              ng-click="insertRow(person);"
+              ng-disabled="personForm.$invalid">Insert New Row</button>
+    </form>
+
 </div>
+<hr/>
 
 <li  ng-repeat="row in awesomeThings._embedded.people">
-      {{row.firstName}},{{row.lastName}},{{row.email}},{{row.address}}
-	  ,{{row.mobile}},{{row.employeId}}
+      {{row.employeeId}},{{row.firstName}}  ,{{row.lastName}}	  ,{{row.email}}
+	  ,{{row.address}}	  ,{{row.mobile}}  ,<a href={{row._links.self.href}}>Details</a>
+	  <div ng-controller="DemoCrudCtrlInsert">
+		<form>
+			<input id="detlink" type="hidden" name="detlink" ng-model="row._links.self.href"  />
+			<button type="button" ng-click="deleteRow(row._links.self.href);">Delete Row</button>
+		</form>
+	  </div>
 </li>
